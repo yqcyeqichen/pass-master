@@ -1,0 +1,857 @@
+:root {
+    --primary: #4285f4;
+    --primary-dark: #3367d6;
+    --secondary: #34a853;
+    --danger: #ea4335;
+    --warning: #fbbc05;
+    --light: #f8f9fa;
+    --dark: #202124;
+    --gray: #5f6368;
+    --gray-light: #dadce0;
+    --text: #202124;
+    --text-light: #f8f9fa;
+    --background: #ffffff;
+    --shadow: rgba(60, 64, 67, 0.3);
+
+    /* 密码强度渐变颜色 */
+    --weak-gradient: linear-gradient(to right, #ff5252, #ff7b7b);
+    --medium-gradient: linear-gradient(to right, #ffab40, #ffd180);
+    --strong-gradient: linear-gradient(to right, #00bcd4, #80deea);
+    --very-strong-gradient: linear-gradient(to right, #3d5afe, #8c9eff);
+    
+    --weak: #ea4335;
+    --medium: #fbbc05;
+    --strong: #34a853;
+    --very-strong: #4285f4;
+    
+    --border-radius: 8px;
+    --transition: all 0.3s ease;
+}
+
+.dark-theme {
+    --primary: #8ab4f8;
+    --primary-dark: #669df6;
+    --secondary: #81c995;
+    --danger: #f28b82;
+    --warning: #fdd663;
+    --light: #303134;
+    --dark: #e8eaed;
+    --gray: #9aa0a6;
+    --gray-light: #3c4043;
+    --text: #e8eaed;
+    --text-light: #202124;
+    --background: #202124;
+    --shadow: rgba(0, 0, 0, 0.5);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: transparent;
+    color: var(--text);
+    line-height: 1.6;
+    transition: var(--transition);
+    position: relative;
+    -webkit-tap-highlight-color: transparent;
+    overscroll-behavior: none;
+    overflow-x: hidden;
+    text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    touch-action: manipulation;
+}
+
+.container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+    z-index: 1;
+    box-sizing: border-box;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+header h1 {
+    background: linear-gradient(to right, #ff66c4, #a64dff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 5px;
+    font-size: 2.5rem;
+    display: inline-block;
+}
+
+header p {
+    color: var(--gray);
+    font-size: 1.1rem;
+}
+
+.theme-switch {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+#theme-toggle {
+    display: none;
+}
+
+.toggle-label {
+    display: inline-block;
+    width: 60px;
+    height: 30px;
+    background: linear-gradient(to right, #ffab40, #ffd740);
+    border-radius: 30px;
+    position: relative;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.toggle-label i {
+    position: absolute;
+    top: 6px;
+    font-size: 18px;
+}
+
+.fa-sun {
+    left: 8px;
+    color: #fdd663;
+}
+
+.fa-moon {
+    right: 8px;
+    color: #8ab4f8;
+}
+
+#theme-toggle:checked + .toggle-label {
+    background: linear-gradient(to right, #3d5afe, #7c4dff);
+}
+
+#theme-toggle:checked + .toggle-label::after {
+    left: 32px;
+}
+
+/* 确保样式特异性，避免与iOS开关冲突 */
+#theme-toggle + .toggle-label::after {
+    content: "";
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    background-color: var(--light);
+    border-radius: 50%;
+    top: 2px;
+    left: 2px;
+    transition: var(--transition);
+}
+
+section {
+    background-color: var(--light);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: var(--transition);
+    position: relative;
+    backdrop-filter: blur(5px);
+}
+
+.dark-theme section {
+    background-color: var(--light);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.password-display {
+    text-align: center;
+}
+
+.password-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    background-color: var(--background);
+    padding: 15px;
+    border-radius: var(--border-radius);
+    box-shadow: inset 0 0 5px var(--shadow);
+}
+
+#password {
+    font-family: monospace;
+    font-size: 1.4rem;
+    color: var(--primary);
+    margin: 0 10px;
+    word-break: break-all;
+    flex-grow: 1;
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--gray);
+    font-size: 1.2rem;
+    padding: 5px;
+    transition: var(--transition);
+}
+
+.icon-btn:hover {
+    color: var(--primary);
+}
+
+.strength-meter {
+    margin-top: 10px;
+}
+
+.strength-bar-container {
+    height: 8px;
+    background-color: var(--gray-light);
+    border-radius: 4px;
+    margin-bottom: 5px;
+    overflow: hidden;
+}
+
+.strength-bar {
+    height: 100%;
+    width: 0;
+    transition: var(--transition);
+}
+
+/* 更新强度条的样式应用方式 */
+.strength-bar[data-strength="weak"] {
+    background: var(--weak-gradient);
+}
+
+.strength-bar[data-strength="medium"] {
+    background: var(--medium-gradient);
+}
+
+.strength-bar[data-strength="strong"] {
+    background: var(--strong-gradient);
+}
+
+.strength-bar[data-strength="very-strong"] {
+    background: var(--very-strong-gradient);
+}
+
+#strength-text {
+    font-size: 0.9rem;
+    color: var(--gray);
+}
+
+.option {
+    margin-bottom: 15px;
+}
+
+.option label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.checkbox {
+    display: flex;
+    align-items: center;
+}
+
+.checkbox input {
+    margin-right: 10px;
+}
+
+.checkbox label {
+    margin-bottom: 0;
+    cursor: pointer;
+}
+
+input[type="range"] {
+    width: 100%;
+    background-color: var(--gray-light);
+    height: 6px;
+    border-radius: 3px;
+    outline: none;
+    transition: var(--transition);
+}
+
+.primary-btn {
+    background: linear-gradient(to right, #ff66c4, #a64dff);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    padding: 12px 20px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    width: 100%;
+    transition: var(--transition);
+    margin-top: 10px;
+}
+
+.primary-btn:hover {
+    background: linear-gradient(to right, #ff4db8, #9933ff);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.password-history h2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+}
+
+#clear-history {
+    color: var(--primary);
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: normal;
+}
+
+#clear-history:hover {
+    text-decoration: underline;
+}
+
+.history-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: var(--background);
+    border-radius: var(--border-radius);
+    margin-bottom: 8px;
+    transition: var(--transition);
+}
+
+.history-item:hover {
+    box-shadow: 0 2px 8px var(--shadow);
+}
+
+.history-password {
+    font-family: monospace;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 70%;
+}
+
+.history-info {
+    display: flex;
+    align-items: center;
+}
+
+.history-strength {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.history-strength[data-strength="weak"] {
+    background: var(--weak-gradient);
+}
+
+.history-strength[data-strength="medium"] {
+    background: var(--medium-gradient);
+}
+
+.history-strength[data-strength="strong"] {
+    background: var(--strong-gradient);
+}
+
+.history-strength[data-strength="very-strong"] {
+    background: var(--very-strong-gradient);
+}
+
+.empty-history {
+    text-align: center;
+    color: var(--gray);
+    font-style: italic;
+}
+
+footer {
+    text-align: center;
+    margin-top: 30px;
+    color: var(--gray);
+    font-size: 0.9rem;
+}
+
+footer a {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* 模态框样式 */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: var(--background);
+    margin: 15% auto;
+    padding: 20px;
+    border-radius: var(--border-radius);
+    width: 80%;
+    max-width: 600px;
+    box-shadow: 0 5px 15px var(--shadow);
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    color: var(--gray);
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: var(--text);
+}
+
+/* 增强的响应式布局 */
+/* 手机屏幕 - 竖屏 */
+@media (max-width: 480px) {
+    .container {
+        padding: 12px;
+    }
+    
+    header h1 {
+        font-size: 1.8rem;
+    }
+    
+    header p {
+        font-size: 1rem;
+    }
+    
+    .password-container {
+        padding: 12px;
+        flex-wrap: wrap;
+    }
+    
+    #password, #auto-password {
+        font-size: 1.1rem;
+        margin-bottom: 8px;
+        width: 100%;
+    }
+    
+    .icon-btn {
+        padding: 8px;
+    }
+    
+    .option {
+        margin-bottom: 12px;
+    }
+    
+    .option-label {
+        font-size: 0.9rem;
+    }
+    
+    .primary-btn {
+        padding: 10px 15px;
+        font-size: 0.95rem;
+    }
+    
+    .ios-toggle-btn {
+        width: 42px;
+        height: 24px;
+    }
+    
+    .ios-toggle-btn::after {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .ios-toggle:checked + .ios-toggle-btn::after {
+        left: calc(100% - 22px);
+    }
+    
+    .auto-password h2 {
+        font-size: 1.1rem;
+        align-items: flex-start;
+        flex-direction: column;
+    }
+    
+    .timer-container {
+        margin-left: 0;
+        margin-top: 8px;
+    }
+    
+    .seo-content h2 {
+        font-size: 1.3rem;
+    }
+    
+    .seo-content h3 {
+        font-size: 1.1rem;
+    }
+    
+    .seo-content p, .seo-content li {
+        font-size: 0.9rem;
+    }
+}
+
+/* 手机屏幕 - 横屏 和 小平板 */
+@media (min-width: 481px) and (max-width: 767px) {
+    .container {
+        padding: 15px;
+    }
+    
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    .password-container {
+        padding: 12px;
+    }
+    
+    #password, #auto-password {
+        font-size: 1.2rem;
+    }
+}
+
+/* 平板电脑 */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .container {
+        padding: 18px;
+        max-width: 90%;
+    }
+}
+
+/* 进一步优化弹性布局 */
+@media (max-width: 767px) {
+    .option.checkbox {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 10px;
+        align-items: center;
+    }
+    
+    .ios-toggle-container {
+        grid-row: 1;
+        grid-column: 1;
+    }
+    
+    .option-label {
+        grid-row: 1;
+        grid-column: 2;
+        margin-bottom: 0;
+    }
+    
+    .password-history h2 {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    #clear-history {
+        margin-top: 5px;
+    }
+    
+    .modal-content {
+        width: 90%;
+        margin: 30% auto;
+        padding: 15px;
+    }
+    
+    /* 优化复制和刷新按钮 */
+    .password-container {
+        position: relative;
+        padding-bottom: 40px;
+    }
+    
+    .icon-btn {
+        position: absolute;
+        bottom: 10px;
+    }
+    
+    #copy-btn, #auto-copy-btn {
+        right: 50px;
+    }
+    
+    #refresh-btn, #auto-refresh-btn {
+        right: 10px;
+    }
+    
+    /* 优化SEO内容区域 */
+    .seo-content ul, .seo-content ol {
+        padding-left: 20px;
+    }
+}
+
+/* 触摸设备优化 */
+@media (hover: none) {
+    .icon-btn, .primary-btn, .ios-toggle-btn, #clear-history {
+        cursor: default;
+    }
+    
+    .icon-btn {
+        padding: 12px;
+    }
+    
+    .ios-toggle-btn {
+        min-width: 44px;
+        min-height: 28px;
+    }
+    
+    a, button {
+        touch-action: manipulation;
+    }
+}
+
+/* 针对特小屏幕设备的优化 */
+@media (max-width: 360px) {
+    header h1 {
+        font-size: 1.6rem;
+    }
+    
+    .option-label {
+        font-size: 0.85rem;
+    }
+}
+
+/* 高分辨率设备优化 */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    body {
+        font-weight: 300;
+    }
+}
+
+.auto-password h2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+}
+
+.auto-description {
+    margin-bottom: 15px;
+    color: var(--gray);
+    font-size: 0.9rem;
+}
+
+#auto-password {
+    font-family: monospace;
+    font-size: 1.4rem;
+    background: linear-gradient(to right, #ff66c4, #a64dff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin: 0 10px;
+    word-break: break-all;
+    flex-grow: 1;
+}
+
+.timer-container {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+.timer-ring {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+}
+
+.timer-ring svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#timer-arc {
+    stroke-dasharray: 113;
+    stroke-dashoffset: 0;
+    transition: stroke-dashoffset 0.1s linear;
+}
+
+#auto-timer {
+    position: absolute;
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--text);
+    z-index: 10;
+    background: none;
+    padding: 0;
+    width: 20px;
+    text-align: center;
+}
+
+/* 确保文字在暗色主题下仍然可见 */
+.dark-theme #auto-timer {
+    color: white;
+    text-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+}
+
+/* 暗色模式下稍微调整阴影 */
+.dark-theme .timer-simple {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+}
+
+/* 添加到现有的样式表底部 */
+svg {
+    overflow: visible;
+}
+
+/* iOS开关样式 */
+.ios-toggle-container {
+    margin-right: 10px;
+}
+
+.ios-toggle {
+    display: none;
+}
+
+.ios-toggle-btn {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 28px;
+    background-color: #e6e6e6;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.ios-toggle-btn::after {
+    content: "";
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: white;
+    top: 2px;
+    left: 2px;
+    transition: all 0.3s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.ios-toggle:checked + .ios-toggle-btn {
+    background: linear-gradient(to right, #ff66c4, #a64dff);
+}
+
+.ios-toggle:checked + .ios-toggle-btn::after {
+    left: calc(100% - 26px);
+}
+
+.option.checkbox {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.option-label {
+    margin-bottom: 0;
+    cursor: pointer;
+}
+
+.dark-theme .ios-toggle-btn {
+    background-color: #555;
+}
+
+.dark-theme .ios-toggle-btn::after {
+    background-color: #eee;
+}
+
+/* SEO内容区域样式 */
+.seo-content {
+    color: var(--text);
+    line-height: 1.7;
+}
+
+.seo-content h2 {
+    color: var(--primary);
+    margin: 20px 0 15px;
+    font-size: 1.5rem;
+    background: linear-gradient(to right, #ff66c4, #a64dff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    display: inline-block;
+}
+
+.seo-content h3 {
+    margin: 20px 0 10px;
+    font-size: 1.2rem;
+    color: var(--primary);
+}
+
+.seo-content p {
+    margin-bottom: 15px;
+}
+
+.seo-content ul, 
+.seo-content ol {
+    margin-left: 25px;
+    margin-bottom: 15px;
+}
+
+.seo-content li {
+    margin-bottom: 8px;
+}
+
+.seo-content strong {
+    color: var(--primary);
+}
+
+.seo-content em {
+    font-style: italic;
+    font-weight: 500;
+}
+
+.dark-theme .seo-content strong {
+    color: var(--primary);
+}
+
+/* 响应式调整 */
+@media (max-width: 600px) {
+    .seo-content h2 {
+        font-size: 1.3rem;
+    }
+    
+    .seo-content h3 {
+        font-size: 1.1rem;
+    }
+}
+
+/* 动态背景样式 */
+#bg-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -5;
+    opacity: 1;
+    pointer-events: auto;
+    background-color: transparent;
+    display: block;
+} 

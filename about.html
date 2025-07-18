@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#4285f4">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>关于密码大师 | 我们的安全与隐私承诺</title>
+    <meta name="description" content="了解密码大师的技术实现、安全措施和隐私保护政策。我们致力于提供简单、直观且安全的密码生成解决方案。">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .section {
+            background-color: var(--light);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        h3 {
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        .back-btn:hover {
+            text-decoration: underline;
+        }
+        .icon {
+            margin-right: 5px;
+        }
+        .team-member {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-right: 15px;
+        }
+        .member-info h4 {
+            margin: 0 0 5px 0;
+        }
+        .member-info p {
+            margin: 0;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-left icon"></i>返回主页</a>
+        
+        <header>
+            <h1>密码大师</h1>
+            <p>了解我们的密码生成工具</p>
+            <div class="theme-switch">
+                <input type="checkbox" id="theme-toggle">
+                <label for="theme-toggle" class="toggle-label">
+                    <i class="fas fa-sun"></i>
+                    <i class="fas fa-moon"></i>
+                </label>
+            </div>
+        </header>
+
+        <section class="section">
+            <h2>关于我们</h2>
+            <p>密码大师是一款专为解决当今数字时代密码安全问题而设计的工具。随着网络安全威胁的增加，强密码变得前所未有的重要，但创建和记住多个复杂密码对许多用户来说是一项挑战。</p>
+            <p>我们的目标是提供一个简单、直观且安全的解决方案，帮助用户生成高强度的密码，同时不牺牲用户体验。</p>
+        </section>
+
+        <section class="section">
+            <h2>特点与优势</h2>
+            <ul>
+                <li><strong>高度可定制</strong> - 根据您的需求自定义密码生成选项</li>
+                <li><strong>安全可靠</strong> - 使用加密安全的随机数生成器</li>
+                <li><strong>隐私保护</strong> - 所有操作在客户端完成，不会传输您的密码</li>
+                <li><strong>直观界面</strong> - 简洁、现代的用户界面，易于使用</li>
+                <li><strong>密码强度评估</strong> - 实时评估生成的密码强度</li>
+                <li><strong>无需注册</strong> - 无需创建账户即可使用所有功能</li>
+                <li><strong>免费使用</strong> - 所有功能完全免费</li>
+                <li><strong>开源项目</strong> - 代码透明，欢迎贡献</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2>技术实现</h2>
+            <p>密码大师使用以下技术构建：</p>
+            <ul>
+                <li><strong>前端</strong>：HTML5、CSS3、JavaScript</li>
+                <li><strong>密码生成</strong>：Web Crypto API（提供加密安全的随机数）</li>
+                <li><strong>本地存储</strong>：localStorage（仅用于保存用户偏好和临时历史记录）</li>
+                <li><strong>设计框架</strong>：纯CSS变量实现主题切换，无外部依赖</li>
+            </ul>
+            <p>所有计算都在用户的设备上进行，不依赖任何服务器端处理，确保了最高级别的隐私和安全性。</p>
+        </section>
+
+        <section class="section">
+            <h2>安全性说明</h2>
+            <h3>我们如何生成密码？</h3>
+            <p>密码大师使用浏览器内置的加密安全随机数生成器（Web Crypto API的getRandomValues方法），而不是传统的Math.random()函数。这确保了生成的密码具有真正的随机性和不可预测性。</p>
+            
+            <h3>我们如何处理您的数据？</h3>
+            <p>我们不会在服务器上存储任何用户数据。生成的密码和用户首选项仅存储在您的本地设备上（使用浏览器的localStorage功能），且仅在您的设备上处理。</p>
+            
+            <h3>密码历史记录</h3>
+            <p>为方便用户，我们提供了密码历史记录功能，但历史记录仅保存在您的设备上，不会上传到任何服务器。您可以随时清除历史记录。</p>
+        </section>
+
+        <section class="section">
+            <h2>联系我们</h2>
+            <p>有问题、建议或反馈？请通过以下方式联系我们：</p>
+            <ul>
+                <li><i class="fas fa-envelope icon"></i> 邮箱：support@passwordmaster.com</li>
+                <li><i class="fab fa-github icon"></i> GitHub：<a href="https://github.com/yourname/password-master" target="_blank">github.com/yourname/password-master</a></li>
+            </ul>
+        </section>
+
+        <footer>
+            <p>© 2023 密码大师 | <a href="index.html">主页</a> | <a href="faq.html">常见问题</a></p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeToggle = document.getElementById('theme-toggle');
+            
+            // 加载主题偏好
+            const isDarkTheme = localStorage.getItem('darkTheme') === 'true';
+            if (isDarkTheme) {
+                document.body.classList.add('dark-theme');
+                themeToggle.checked = true;
+            }
+            
+            // 切换主题
+            themeToggle.addEventListener('change', () => {
+                document.body.classList.toggle('dark-theme');
+                const isDark = document.body.classList.contains('dark-theme');
+                localStorage.setItem('darkTheme', isDark);
+            });
+        });
+    </script>
+</body>
+</html> 
